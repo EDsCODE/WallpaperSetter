@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 // Item describes a Reddit item.
@@ -61,8 +62,14 @@ func Get(reddit string) ([]Item, error) {
 	items := make([]Item, len(r.Data.Children))
 	for i, child := range r.Data.Children {
 		items[i] = child.Data
-		fmt.Println(child.Data)
+		//fmt.Println(child.Data)
 	}
 
 	return items, nil
+}
+
+var desktop = os.Getenv("XDG_CURRENT_DESKTOP")
+
+func Desktop() {
+	fmt.Printf("%s", desktop)
 }
